@@ -1,13 +1,21 @@
-import { Button } from "@/components/ui/button";
+import Layout from "./layouts/Layout";
+import {
+   BrowserRouter as Router,
+   Route,
+   Routes,
+   Navigate
+ } from "react-router-dom";
+
+
 
 const App = () => {
   return (
-    <div>
-      <div className="app bg-black text-red-400 text-[2rem]">App</div>
-      <div>
-        <Button>Click me</Button>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout> <p>home page</p></Layout>}/>
+        <Route path="/search" element={<Layout><p>Search page</p></Layout>}/>
+      </Routes>
+    </Router>
   );
 };
 
