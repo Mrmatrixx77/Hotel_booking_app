@@ -42,7 +42,7 @@ const Header = () => {
             </Link>
           )} */}
           <Link
-              to="/sign-in"
+              to="/register"
             //   className="flex bg-white items-center text-red-600 px-3 font-bold hover:bg-gray-100"
             >
               <Button variant="default" className="text-[1rem] hover:bg-red-600 hover:text-black hover:border-2 hover:border-black"> Sign in </Button>

@@ -1,19 +1,35 @@
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import * as apiClient from "../api-client.ts";
 
 export type RegisterFormData = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-  };
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 
 const Register = () => {
-    const {register,watch,handleSubmit,formState:{errors}} = useForm<RegisterFormData>();
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>();
+  const mutation = useMutation(apiClient.register, {
+    onSuccess: () => {
+      console.log("register successfull");
+    },
+    onError: (error: Error) => {
+      console.log(error.message);
+    }
+  });
 
-    const onSubmit = handleSubmit((data)=>{
-      console.log(data)
-    })
+  const onSubmit = handleSubmit((data) => {
+    // console.log(data)
+    mutation.mutate(data);
+  });
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
       <h2 className="text-3xl font-bold">Create an Account</h2>
@@ -95,7 +111,7 @@ const Register = () => {
         </button>
       </span>
     </form>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
