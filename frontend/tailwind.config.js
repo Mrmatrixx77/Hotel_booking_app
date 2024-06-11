@@ -1,5 +1,7 @@
+
+import tailwindcssAnimate from "tailwindcss-animate" 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default  {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -10,8 +12,9 @@ module.exports = {
   prefix: "",
   theme: {
     container: {
-      center: true,
-      padding: "10rem",
+      padding:{
+        md:"10rem"
+      },
       screens: {
         "2xl": "1400px",
       },
@@ -33,5 +36,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 }

@@ -5,6 +5,7 @@ import {
    Routes,
    Navigate
  } from "react-router-dom";
+import Register from "./pages/Register";
 
 
 
@@ -14,6 +15,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout> <p>home page</p></Layout>}/>
         <Route path="/search" element={<Layout><p>Search page</p></Layout>}/>
+        <Route path="/register" element={<Layout><Register/></Layout>}/>
+        <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
     </Router>
   );

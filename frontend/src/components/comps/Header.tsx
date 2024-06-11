@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 const Header = () => {
 
   return (
-    <div className="bg-red-600 py-6">
+    <div className="bg-red-600 py-6 md:px-[10rem] px-[2rem]" >
       <div className="container mx-auto flex justify-between">
         <span className="text-3xl text-white font-bold tracking-tight">
           <Link to="/" className="underline">Vacations.Com</Link>

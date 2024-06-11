@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-      <div className="bg-red-600 py-10">
+      <div className="bg-red-600 py-10 md:px-[10rem] px-[2rem]">
         <div className="container mx-auto flex justify-between items-center">
           {/* <span className="underline text-3xl text-white font-bold tracking-tight cursor-pointer">
             Vacations.Com
