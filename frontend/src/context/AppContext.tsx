@@ -1,5 +1,7 @@
 import { useToast } from "@/components/ui/use-toast";
 import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import * as apiClient from "../api-client";
 
 
 type ToastMessage = {
@@ -9,6 +11,7 @@ type ToastMessage = {
 
 type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
+  isLoggedIn:boolean;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
@@ -19,6 +22,27 @@ export const AppContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [toastItems, setToastItems] = useState<ToastMessage | undefined>(undefined);
+  const { isError } = useQuery("validateToken", apiClient.validateToken, {
+    retry: false,
+  });
+
+  // const [isError, setIsError] = useState(false);
+
+  // useEffect(() => {
+  //   const validateToken = async () => {
+  //     try {
+  //       const response = await apiClient.validateToken();
+  //       if (!response.ok) {
+  //         throw new Error('Token validation failed');
+  //       }
+  //       // handle successful validation if needed
+  //     } catch (error) {
+  //       setIsError(true);
+  //     }
+  //   };
+
+  //   validateToken();
+  // }, []); 
   const {toast} = useToast();
   
 let variants;
@@ -27,7 +51,7 @@ if(toastItems?.type === "SUCCESS"){
 }else{
   variants = "destructive"
 }
-console.log(toastItems)
+// console.log(toastItems)
 
   useEffect(()=>{
     if(toastItems != undefined){
@@ -39,6 +63,7 @@ console.log(toastItems)
       })
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[toastItems])
 
 
@@ -49,6 +74,7 @@ console.log(toastItems)
           console.log(toastMessage)
           setToastItems(toastMessage)
         },
+        isLoggedIn: !isError,
       }}
     >
       {/* {toastItems && 
