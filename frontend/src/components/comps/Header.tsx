@@ -22,13 +22,13 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <Link
-                className="flex items-center text-white px-3 font-bold hover:bg-blue-600"
+                className="flex items-center text-white px-3 font-bold hover:border-2 hover:border-black hover:rounded"
                 to="/my-bookings"
               >
                 My Bookings
               </Link>
               <Link
-                className="flex items-center text-white px-3 font-bold hover:bg-blue-600"
+                className="flex items-center text-white px-3 font-bold hover:border-2 hover:border-black hover:rounded"
                 to="/my-hotels"
               >
                 My Hotels
@@ -37,10 +37,12 @@ const Header = () => {
             </>
           ) : (
             <Link
-              to="/register"
+              to="/sign-in"
             >
-              <Button variant="default" className="text-[1rem] hover:bg-red-600 hover:text-black hover:border-2 hover:border-black"> Sign in </Button>
+              <Button variant="default" className="text-[1rem] hover:border-2 hover:border-white"> Log in </Button>
+              
             </Link>
+            
           )}
           
         </span>
