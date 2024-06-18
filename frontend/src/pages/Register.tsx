@@ -26,6 +26,7 @@ const Register = () => {
       // console.log("register successfull");    
       showToast({message:"Registered Successfully!",type:"SUCCESS"});
       navigate("/")
+      window.location.reload();
     },
     onError: (error: Error) => {
       // console.log(error.message);

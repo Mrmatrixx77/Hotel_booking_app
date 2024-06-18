@@ -25,6 +25,7 @@ const SignIn = () => {
       showToast({ message: "logged in successfully!!", type: "SUCCESS" })
       // console.log('logged in')
       navigate("/");
+      window.location.reload();
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" })
