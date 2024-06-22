@@ -1,17 +1,28 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-// const Header = () => {
-//   return (
-//     <div className="header bg-black">Header</div>
-//   )
-// }
-
-// export default Header
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useAppContext } from "@/context/AppContext";
+import * as apiClient from "../../api-client";
+import { useQueryClient, useMutation } from "react-query";
 const Header = () => {
 
- const {isLoggedIn} =  useAppContext();
+ const {isLoggedIn,showToast} =  useAppContext();
+ const QueryClient = useQueryClient();
+
+ const mutation = useMutation(apiClient.SignOut, {
+  onSuccess: async () => {
+    await QueryClient.invalidateQueries("validateToken")
+    showToast({ message: "Signed Out!", type: "SUCCESS" });
+  },
+  onError: (error: Error) => {
+    showToast({ message: error.message, type: "ERROR" });
+  },
+});
+
+const handleClick = () => {
+  mutation.mutate();
+};
   return (
     <div className="bg-red-600 py-6 md:px-[10rem] px-[2rem]" >
       <div className="container mx-auto flex justify-between">
@@ -33,7 +44,11 @@ const Header = () => {
               >
                 My Hotels
               </Link>
-              {/* <SignOutButton /> */}
+              <Link to="/logout">
+              
+              <Button variant="default" className="text-[1rem] hover:border-2 hover:border-white" onClick={handleClick}> Sign Out </Button>
+              </Link>
+
             </>
           ) : (
             <Link

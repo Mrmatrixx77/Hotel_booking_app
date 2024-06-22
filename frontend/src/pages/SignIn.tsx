@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm } from "react-hook-form"
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-client";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ export type SignInFormData = {
 
 const SignIn = () => {
   const { showToast } = useAppContext();
+  const QueryClient = useQueryClient();
 
 
   const { register, formState: { errors }, handleSubmit } = useForm<SignInFormData>();
@@ -23,9 +24,9 @@ const SignIn = () => {
   const mutation = useMutation(apiClient.SignIn, {
     onSuccess: async () => {
       showToast({ message: "logged in successfully!!", type: "SUCCESS" })
+      await QueryClient.invalidateQueries("validateToken")
       // console.log('logged in')
       navigate("/");
-      window.location.reload();
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" })

@@ -26,23 +26,6 @@ export const AppContextProvider = ({
     retry: false,
   });
 
-  // const [isError, setIsError] = useState(false);
-
-  // useEffect(() => {
-  //   const validateToken = async () => {
-  //     try {
-  //       const response = await apiClient.validateToken();
-  //       if (!response.ok) {
-  //         throw new Error('Token validation failed');
-  //       }
-  //       // handle successful validation if needed
-  //     } catch (error) {
-  //       setIsError(true);
-  //     }
-  //   };
-
-  //   validateToken();
-  // }, []); 
   const {toast} = useToast();
   
 let variants;
@@ -51,7 +34,6 @@ if(toastItems?.type === "SUCCESS"){
 }else{
   variants = "destructive"
 }
-// console.log(toastItems)
 
   useEffect(()=>{
     if(toastItems != undefined){
@@ -77,11 +59,6 @@ if(toastItems?.type === "SUCCESS"){
         isLoggedIn: !isError,
       }}
     >
-      {/* {toastItems && 
-      toast({})
-      
-      
-      } */}
       
       {children}
     </AppContext.Provider>
