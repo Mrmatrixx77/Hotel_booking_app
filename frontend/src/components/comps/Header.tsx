@@ -54,7 +54,7 @@ const handleClick = () => {
             <Link
               to="/sign-in"
             >
-              <Button variant="default" className="text-[1rem] hover:border-2 hover:border-white"> Log in </Button>
+              <Button variant="default" className="text-[1rem] hover:border-2 hover:border-white"> Sign In </Button>
               
             </Link>
             

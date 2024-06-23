@@ -12,14 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
-    
-    // origin: 'http://localhost:5173',
     credentials: true,
   })
 );
 app.use(cookieParser());
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING as string).then(() => {
-  console.log("DB Connected");
+  console.log("DB Connected :",process.env.MONGO_DB_CONNECTION_STRING);
 });
 
 app.get("/api/test", async (req: Request, res: Response) => {
